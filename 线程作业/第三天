@@ -1,24 +1,27 @@
 请列出Happens-before的几种规则
 6种规则
-（1）程序顺序规则
-（2）volatile
-(3)监视器锁的规则(synchronized)
-(4)join规则
-(5)传递性规则
-(6)start规则
+（1）程序顺序规则:一个线程中的每个操作，happens-before于该线程中的任意后续的操作，可以简单认为是as-if-serial.
+（2）volatile:调用jvm底层的锁屏障机制，使被volatile修饰变量的写操作，一定要happens-before改变量后续的读操作。
+(3)监视器锁的规则(synchronized):对于一个锁的解锁，一定happens-before于随后对这个锁的加锁。
+(4)join规则:如果线程A执行操作ThreadB.join()并返回成功，那么线程B的任意操作对于线程A都是可见的（B happens-before A）
+(5)传递性规则:如果1 happens-before 2,2 happens-before 3，一定1 happens-before 3
+(6)start规则:如果线程A执行操作B的start，那么线程A的Bstart操作happens-before线程B中的任意操作，也就是主线程调用start之前，所有对变量的修改，都可见。
 
 volatile 能使得一个非原子操作变成原子操作吗？为什么？
 不能
-原因：
+原因：因为volatile只能保证可见性和一定的的有序性，无法保证共享数据的原子性，有一个共享变量C，该变量自增，线程A把C读取到缓存自增，这时线程A被阻塞了，线程B读取的数据不是最新的，
+B读取的是脏数据，所以valatile保证不了共享变量的原子性
 
 
 哪些场景适合使用Volatile
-
-
+1.开销较低的读写锁策略，volatile最适合一个线程写，多个线程读的场景
+2.状态标识，一个线程修改，对其他线程是可见的
+3.一次性安全发布：即双重检查锁定
 
 
 如果对一个数组修饰volatile，是否能够保证数组元素的修改对其他线程的可见？为什么？
-
+不能，volatile修饰数组时，只是保证数组的地址（引用）是可见的，修改数组元素时，对其他线程是不可见的
+被volatile修饰的数组里的元素没有被volatile修饰，故其无法对其他线程可见。
 
 
 
