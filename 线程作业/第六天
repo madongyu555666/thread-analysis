@@ -1,0 +1,8 @@
+ConcurrentHashMap1.8中是基于什么机制来保证线程安全性的
+
+ConcurrentHashMap通过get方法获取数据的时候，是否需要通过加锁来保证数据的可见性？为什么？
+不需要
+
+ConcurrentHashMap1.7和ConcurrentHashMap1.8有哪些区别？
+
+ConcurrentHashMap1.8为什么要引入红黑树？
