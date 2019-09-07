@@ -1,0 +1,80 @@
+1,spring模块，原理
+2,cms数据库锁
+3,dubbo原理
+4,lock和synchronized锁区别
+5,redis的list如何实现
+6,数据库索引规则
+
+
+
+1、你看过那些源码吗？
+2、那你能讲讲HashMap的实现原理吗？
+3、HashMap什么时候会进行rehash？
+4、HashMap什么时候会进行扩容？
+5、那HashMap的初始容量设置成多少比较合适呢？
+6、结合源码说说HashMap在高并发场景中为什么会出现死循环？
+7、JDK1.8中对HashMap做了哪些性能优化？
+8、HashMap和HashTable有何不同？
+9、HashMap 和 ConcurrentHashMap 的区别？
+10、ConcurrentHashMap和LinkedHashMap有什么区别？
+11、为什么ConcurrentHashMap中的链表转红黑树的阀值是8？
+12、什么是ConcurrentSkipListMap？他和ConcurrentHashMap有什么区别？
+13、还看过其他的源码吗？Spring的源码有了解吗？
+14、SpringBoot的源码呢？知道starter是怎么实现的吗？
+
+
+
+简单绍一下HashMap (其中包括底层数据结构、为什么默认长度的为16、线程安全问题等)
+介绍一下红黑树
+简单说一下ConcurrentHashMap
+数据库的事务
+AICD 原子性 一致性 隔离性 持久性
+乐观锁和悲观锁的区别、应用场景
+垃圾回收原理
+堆排序
+快速排序
+redis使用场景
+springcloud框架介绍
+
+2345公司 三轮面试
+1.Redis分布式锁 设置过期时间原子操作
+2.MySQL事务实现原理
+3.分布式一致性
+4.幂等性控制
+5.zuul网关限流
+6.MySQL索引实现原理
+7.ddd领域驱动设计
+8.开闭原则
+一个软件应该通过扩展来实现变化，而不是通过修改已有的代码来实现变化的。
+9.充血模型、贫血模型
+11.dubbo原理，如果使得调用像本地调用
+12.服务降级和熔断
+13.redis数据结构
+14.分库分表，热点，扩容
+15.zuul网关实现
+16.gc日志
+17.线程池丢弃方式
+18.mysql强制走索引方式
+19.Hbase/MongoDB原理
+20.什么是雪崩，雪崩和降级的区别
+21.有哪些分库分表的框架或者工具
+22.如何解决跨域问题
+23.策略模式+工厂模式
+24.Redis持久化方式（RDB、AOF）
+25.Redis统计UV访问量
+26.class加载过程
+
+趣头条 三轮面试
+apiGataway 有哪些功能
+注册发现介绍一下
+业务监控
+TCP／IP
+http
+IP层
+架构师必备技能
+redis热点问题解决方案
+微信消息架构设计
+redis里面set存储结构
+两个数组找到最大值
+整数转换为二进制，看1的数量
+架构设计原则 」
