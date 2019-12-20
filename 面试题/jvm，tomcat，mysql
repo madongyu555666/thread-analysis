@@ -1,0 +1,33 @@
+调优篇
+
+JVM相关面试题
+
+什么是JVM？
+类加载器是如何加载 class 文件的？
+双亲委派模型（Parent Delegation Model）？
+垃圾回收算法有哪些？
+GC什么时候开始？
+JVM 内存分哪几个区，每个区的作用是什么?
+GC 的三种收集方法：标记清除、标记整理、复制算法的原理与特点，分别用在什么地方，如果让你优化收集方法，有什么思路？
+Tomcat 调优篇
+
+Tomcat 面试专题
+
+Tomcat 如何优化？
+内存调优
+垃圾回收策略调优
+共享 session 处理
+关于 Tomcat 的 session 数目
+监视 Tomcat 的内存使用情况
+Tomcat 工作模式？
+MySQL 调优篇
+
+SQL优化面试专题
+
+一张表，里面有 ID 自增主键，当 insert 了 17 条记录之后，删除了第 15,16,17 条记录，再把 Mysql 重启，再 insert一条记录，这条记录的 ID 是 18 还是 15 ？
+请简洁描述 Mysql 中 InnoDB 支持的四种事务隔离级别名称，以及逐级之间的区别？
+在 Mysql 中 ENUM 的用法是什么？
+如何获取当前的 Mysql 版本？
+Mysql 中使用什么存储引擎？
+MySQL 数据表在什么情况下容易损坏？
+MySQL 中有哪几种锁
