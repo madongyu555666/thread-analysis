@@ -1,4 +1,8 @@
 1.IM通讯，前端后端是怎么交互的
+就是问websocket技术
+地址：http://www.52im.net/thread-331-1-1.html
+
+
 2.websocket通讯
 3.netty的半包，拆包粘包。
 4.netty的线程模型
