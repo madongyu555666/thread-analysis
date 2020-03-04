@@ -1,12 +1,15 @@
+/*
 package com.five;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+*/
 /*当队列为空时，请求take会被阻塞，直到队列不为空
 
-当队列满了以后，存储元素的线程需要备阻塞直到队列可以添加数据*/
+当队列满了以后，存储元素的线程需要备阻塞直到队列可以添加数据*//*
+
 public class Main {
 
     List<String> list = new ArrayList<>(10);
@@ -67,3 +70,4 @@ public class Main {
         }
     }
 }
+*/

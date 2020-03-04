@@ -1,5 +1,8 @@
+/*
 package com.two;
-/*请分析以下程序的执行结果,并详细说明原因*/
+*/
+/*请分析以下程序的执行结果,并详细说明原因*//*
+
 public class SynchronizedDemo implements Runnable{
 
     int x = 100;
@@ -36,7 +39,8 @@ public class SynchronizedDemo implements Runnable{
     public void run() {
         m1("main2");
     }
-    /*
+    */
+/*
     * 1.共享：m1,m2，mian个线程同时竞争锁，又互斥（***********）
     *   m1,m2,两个方法都有synchronized修饰，当有线程获得锁的时候另一个线程等待获得锁线程执行完毕，又因为sleep不会释放锁，
     *   ，但是会释放cpu的资源，所以，m2执行后m1才会执行，或m1执行后m2才会执行，而mian在调用m2时，如果得到锁，会先m1,m2执行,结论是三个线程谁先得到锁就执行，
@@ -45,5 +49,7 @@ public class SynchronizedDemo implements Runnable{
     * 2.小于<=1000
     * SynchronizedDemo2不是单例，而synchronized锁的是count，创建多个对象时，就不是同一把锁了，得不到1000的值
     *
-    * */
+    * *//*
+
 }
+*/

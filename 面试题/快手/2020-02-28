@@ -1,0 +1,153 @@
+1.time_wait 时间多少
+默认是30s
+time_wait 是在首先断开请求的一方接受到FIN请求后进入状态，如果被动端没有收到第四次挥手ACK信号，会继续发FIN，那么time_wait 就派上用场了，在2MSL （60s）内等着呢，如果没有这个time_wait，就麻烦了。
+2.四次挥手，三次握手
+3.close_wait 过多
+
+程序问题：如果代码层面忘记了 close 相应的 socket 连接，那么自然不会发出 FIN 包，从而导致 CLOSE_WAIT 累积；或者代码不严谨，出现死循环之类的问题，导致即便后面写了 close 也永远执行不到。
+响应太慢或者超时设置过小：如果连接双方不和谐，一方不耐烦直接 timeout，另一方却还在忙于耗时逻辑，就会导致 close 被延后。响应太慢是首要问题，不过换个角度看，也可能是 timeout 设置过小。
+BACKLOG 太大：此处的 backlog 不是 syn backlog，而是 accept 的 backlog，如果 backlog 太大的话，设想突然遭遇大访问量的话，即便响应速度不慢，也可能出现来不及消费的情况，导致多余的请求还在队列里就被对方关闭了
+4.二叉树两个叶子最近距离
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+#include <iostream>
+using namespace std;
+struct TreeNode{
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+};
+TreeNode* createTree(int num){
+     TreeNode *root= new TreeNode();
+    root->val=num;
+    root->left=NULL;
+    root->right=NULL;
+    return root;
+}
+int DEP(TreeNode* root,TreeNode* k ,int dep){
+    if(root==NULL)
+        return 0;
+    if(root==k)
+        return dep;
+    int dep_L=DEP(root->left,k,dep+1);
+    int dep_R=DEP(root->right,k,dep+1);
+
+    if(dep_L)
+        return dep_L;
+    if(dep_R)
+        return dep_R;
+}
+
+TreeNode* LCA(TreeNode* root,TreeNode* a, TreeNode* b){
+    if(root==NULL)
+        return NULL;
+    if(root==a||root==b)
+        return root;
+    TreeNode* hava_a=LCA(root->left,a,b);
+    TreeNode* hava_b=LCA(root->right,a,b);
+
+    if(hava_a&&hava_b)
+        return root;
+    if(hava_a)
+        return hava_a;
+    if(hava_b)
+        return hava_b;
+
+}
+
+void dfs(TreeNode* root){
+    if(root==NULL)return;
+    dfs(root->left);
+    cout<<root->val<<endl;
+    dfs(root->right);
+}
+int main() {
+   TreeNode* root=createTree(1);
+   root->left=createTree(2);
+   root->right=createTree(3);
+   TreeNode* l_root=root->left;
+   l_root->left=createTree(4);
+   l_root->right=createTree(5);
+
+    cout<<"dep: "<<DEP(root,root->right,0);
+  // TreeNode* lca=LCA(root,l_root->left,root->right);
+  // cout<<"lca: "<<lca->val<<endl;
+   // cout<<root->left->left->val<<endl;
+   //  cout<<root->left->right->val<<endl;
+ //  dfs(root);
+
+
+ans=DEP(a)+DEP(b)-2*DEP(LCA(a,b))
+给出了求LCA
+以及求DEP的代码。
+}

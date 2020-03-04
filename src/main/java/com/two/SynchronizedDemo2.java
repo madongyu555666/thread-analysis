@@ -1,7 +1,10 @@
+/*
 package com.two;
 
 import java.io.IOException;
-/*下面这个程序的最终结果是多少？为什么？*/
+*/
+/*下面这个程序的最终结果是多少？为什么？*//*
+
 public class SynchronizedDemo2 {
 
     static Integer count=0;
@@ -23,3 +26,4 @@ public class SynchronizedDemo2 {
         System.out.println("result:"+count);
     }
 }
+*/

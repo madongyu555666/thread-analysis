@@ -13,6 +13,7 @@ import com.turo.pushy.apns.util.SimpleApnsPushNotification;
 import com.turo.pushy.apns.util.TokenUtil;
 import com.turo.pushy.apns.util.concurrent.PushNotificationFuture;
 import com.turo.pushy.apns.util.concurrent.PushNotificationResponseListener;
+import org.apache.commons.lang3.RandomUtils;
 
 import javax.net.ssl.SSLException;
 import java.io.File;
@@ -60,21 +61,21 @@ public class test {
                     sendNotificationFuture = apnsClient.sendNotification(pushNotification);
 
 
-            //·ÇÒì²½ÅÐ¶Ï·µ»ØµÄÇé¿ö
+            //ï¿½ï¿½ï¿½ì²½ï¿½Ð¶Ï·ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½
             try {
                 final PushNotificationResponse<SimpleApnsPushNotification> pushNotificationResponse =
                         sendNotificationFuture.get();
 
                 if (pushNotificationResponse.isAccepted()) {
-                    //Íø¹Ø½ÓÊÜ¸ÃÍ¨Öª£¬²¢½«³¢ÊÔ½«Æä´«µÝµ½Ä¿±êÉè±¸¡£
+                    //ï¿½ï¿½ï¿½Ø½ï¿½ï¿½Ü¸ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ä´«ï¿½Ýµï¿½Ä¿ï¿½ï¿½ï¿½è±¸ï¿½ï¿½
                     System.out.println("Push notification accepted by APNs gateway.");
                 } else {
-                    //Íø¹Ø¾Ü¾ø¸ÃÍ¨Öª£»ÕâÓ¦ÊÓÎªÓÀ¾ÃÐÔÊ§°Ü£¬²¢ÇÒ²»Ó¦ÔÙ´Î·¢ËÍÍ¨Öª¡£ÁíÍâ£¬APNsÍø¹Ø¿ÉÒÔÖ¸Ê¾Ä¿µÄµØÁîÅÆ±äÎªÎÞÐ§µÄÊ±¼ä´Á¡£
-                    // Èç¹û·¢ÉúÕâÖÖÇé¿ö£¬ÄúÓ¦¸ÃÍ£Ö¹³¢ÊÔÏò¸ÃÁîÅÆ·¢ËÍÈÎºÎÍ¨Öª£¬³ý·Ç×Ô¸ÃÊ±¼ä´Á¼ÇÒÔÀ´¸ÃÁîÅÆÒÑ±»ÖØÐÂ×¢²á¡£
+                    //ï¿½ï¿½ï¿½Ø¾Ü¾ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ò²ï¿½Ó¦ï¿½Ù´Î·ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½â£¬APNsï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½Ö¸Ê¾Ä¿ï¿½Äµï¿½ï¿½ï¿½ï¿½Æ±ï¿½Îªï¿½ï¿½Ð§ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Îºï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½á¡£
                     System.out.println("Notification rejected by the APNs gateway: " +
                             pushNotificationResponse.getRejectionReason());
 
-                    //ÁîÅÆÎÞÐ§
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
                     //getTokenInvalidationTimestamp
                     if (pushNotificationResponse.getTokenInvalidationTimestamp() != null) {
                         final String deviceToken = pushNotificationResponse.getPushNotification().getToken();
@@ -87,22 +88,22 @@ public class test {
 
                         String rejectionReason = pushNotificationResponse.getRejectionReason();
                         if(rejectionReason.equals("Unregistered")){
-                            //Í¨¹ýÅÐ¶Ï·µ»ØÖµÎªUnregistered£¬¿ÉÒÔÅÐ¶ÏÁîÅÆÊÇ·ñ¹ýÆÚ£¬¹ýÆÚ¾ÍÉêÇëÐÂµÄÁîÅÆ£¬²¢ÖØÐÂ·¢ËÍ¸ÃÏûÏ¢
+                            //Í¨ï¿½ï¿½ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ÖµÎªUnregisteredï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½Í¸ï¿½ï¿½ï¿½Ï¢
 
                         }
-                        System.out.println("\t¡­and the token is invalid as of " +
+                        System.out.println("\tï¿½ï¿½and the token is invalid as of " +
                                 pushNotificationResponse.getTokenInvalidationTimestamp());
                     }
                 }
             } catch (final ExecutionException e) {
-                //½«FutureÊ§°Ü²¢Å×³öÒì³£¡£Í¨³£Ó¦½«ÆäÊÓÎªÔÝÊ±ÐÔ¹ÊÕÏ£¬½â¾öÎÊÌâºó£¬µ÷ÓÃ·½Ó¦³¢ÊÔÔÙ´Î·¢ËÍÍ¨Öª
+                //ï¿½ï¿½FutureÊ§ï¿½Ü²ï¿½ï¿½×³ï¿½ï¿½ì³£ï¿½ï¿½Í¨ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±ï¿½Ô¹ï¿½ï¿½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬µï¿½ï¿½Ã·ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ù´Î·ï¿½ï¿½ï¿½Í¨Öª
                 System.err.println("Failed to send push notification.");
                 e.printStackTrace();
             }
 
 
 
-            //×¢²á¼àÌýÆ÷
+            //×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             sendNotificationFuture.addListener(new PushNotificationResponseListener<SimpleApnsPushNotification>() {
 
                 @Override
@@ -110,18 +111,18 @@ public class test {
                     // When using a listener, callers should check for a failure to send a
                     // notification by checking whether the future itself was successful
                     // since an exception will not be thrown.
-                    //µ±Ê¹ÓÃ¼àÌýÆ÷£¬ºô½ÐÕßÓ¦¼ì²éÊ§°Ü·¢ËÍ
-                    //Í¨¹ý¼ì²é½«À´±¾ÉíÊÇ·ñ³É¹¦Í¨Öª
-                    //ÒòÎª²»»áÒý·¢Òì³£¡£
+                    //ï¿½ï¿½Ê¹ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ê§ï¿½Ü·ï¿½ï¿½ï¿½
+                    //Í¨ï¿½ï¿½ï¿½ï¿½é½«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½Í¨Öª
+                    //ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½
                     if (future.isSuccess()) {
                         final PushNotificationResponse<SimpleApnsPushNotification> pushNotificationResponse =
                                 sendNotificationFuture.getNow();
-                        //´Ó´Ë´¦ÏñÒÔÇ°Ò»Ñù´¦ÀíÍÆËÍÍ¨ÖªÏìÓ¦¡£
+                        //ï¿½Ó´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½Ç°Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½Ó¦ï¿½ï¿½
                         // Handle the push notification response as before from here.
                     } else {
-                        //³¢ÊÔ½«Í¨Öª·¢ËÍµ½
-                        // APNsÍø¹Ø
-                        //Ê±³öÁËµãÎÊÌâ¡£ÎÒÃÇ¿ÉÒÔ·¢ÏÖ£¬µ¼ÖÂÊ§°ÜµÄÒì³£//Í¨¹ý»ñÈ¡future.cause£¨£©¡£
+                        //ï¿½ï¿½ï¿½Ô½ï¿½Í¨Öªï¿½ï¿½ï¿½Íµï¿½
+                        // APNsï¿½ï¿½ï¿½ï¿½
+                        //Ê±ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½â¡£ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ô·ï¿½ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Üµï¿½ï¿½ì³£//Í¨ï¿½ï¿½ï¿½ï¿½È¡future.causeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
                         // Something went wrong when trying to send the notification to the
                         // APNs gateway. We can find the exception that caused the failure
@@ -149,7 +150,7 @@ public class test {
                 }
             }*//*
 
-            //¹Ø±Õ
+            //ï¿½Ø±ï¿½
             *//*final Future<Void> closeFuture = apnsClient.close();
             sendNotificationFuture.await();*//*
         } catch (Exception e) {
@@ -168,10 +169,7 @@ public class test {
 
 
 
-        String salt = RandomUtils.getRandomNumbersAndLetters(5);
-        System.out.println(salt);
-        String abcd123 = CryptographyUtil.encodeByMd5WithSalt("Abcd123", salt);
-        System.out.println(abcd123);
+
 
 
 
@@ -189,11 +187,11 @@ public class test {
 
      /*   String s="[{\n" +
                 "\"billCode\":\"WJ20190902BP26452\",\n" +
-                "\"mainTitle\":\"ÉóÅú\",\n" +
-                "\"subTitle\":\"Âí¶¬ÓîµÄÎÄ¼þ±¨Åúµ¥\",\n" +
-                "\"billName\":\"ÈË×ÊPS004½Ó¿ÚÐèÇó¶Ô½Ó\",\n" +
-                "\"billTitle\":\"ÎÄ¼þ±¨Åúµ¥\",\n" +
-                "\"billLinkUrl\":\"https:\\/\\/office.gome.com.cn\\/mobile\\/index.html?smartPath=approveDetail&intoEnv=todo&env=3&requisitionUserName=Âí¶¬Óî&createTime=undefined&billName=ÎÄ¼þ±¨Åúµ¥&billTitle=ÈË×ÊPS004½Ó¿ÚÐèÇó¶Ô½Ó&search=searchBill&runTaskId=4312685&userBillId=520081&billNo=WJ20190902BP26452&origin=1&userId=d82e61a9a3a0455f979931f897024e46\"\n" +
+                "\"mainTitle\":\"ï¿½ï¿½ï¿½ï¿½\",\n" +
+                "\"subTitle\":\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\",\n" +
+                "\"billName\":\"ï¿½ï¿½ï¿½ï¿½PS004ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½\",\n" +
+                "\"billTitle\":\"ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\",\n" +
+                "\"billLinkUrl\":\"https:\\/\\/office.gome.com.cn\\/mobile\\/index.html?smartPath=approveDetail&intoEnv=todo&env=3&requisitionUserName=ï¿½ï¿½ï¿½ï¿½&createTime=undefined&billName=ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&billTitle=ï¿½ï¿½ï¿½ï¿½PS004ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½&search=searchBill&runTaskId=4312685&userBillId=520081&billNo=WJ20190902BP26452&origin=1&userId=d82e61a9a3a0455f979931f897024e46\"\n" +
                 "}]";
 
         List<Bill> bills = JSON.parseArray(s, Bill.class);

@@ -1,3 +1,4 @@
+/*
 package com.one.test;
 
 import java.util.concurrent.TimeUnit;
@@ -46,3 +47,4 @@ public class ThreadStatus {
         }
     }
 }
+*/

@@ -1,13 +1,16 @@
+/*
 package com.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
+*/
 /**
  * @author madongyu
  * @projectName thread-analysis
  * @description: TODO
  * @date 2019/6/611:05
- */
+ *//*
+
 public class CountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
@@ -36,3 +39,4 @@ public class CountDownLatchDemo {
         System.out.println("所有线程执行完毕");
     }
 }
+*/
