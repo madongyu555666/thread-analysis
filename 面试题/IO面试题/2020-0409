@@ -1,0 +1,6 @@
+1、BIO，NIO，AIO的区别？
+2、什么是阻塞IO以及非阻塞IO？
+3、Reactor和Proactor IO设计模式是什么？
+4、NIO底层select、poll和epoll实现的区别 ？
+5、Java NIO的几个核心组成部分是什么？作用分别是什么？
+6、Redis、Netty、Tomcat的线程模型与NIO的联系是什么？
